@@ -10,8 +10,10 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,9 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONObject;
+
+import java.text.DateFormatSymbols;
+
 import cz.msebera.android.httpclient.Header;
 
 public class WeatherController extends AppCompatActivity {
@@ -31,6 +36,8 @@ public class WeatherController extends AppCompatActivity {
     final int REQUEST_CODE = 123;
     final int NEW_CITY_CODE = 456;
     final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather";
+    final String WEATHER_URL_FIVE = "http://api.openweathermap.org/data/2.5/forecast";
+    String [] months;
 
     // App ID to use OpenWeather data
     final String APP_ID = "5c144e14a34c76191da0f5443f9531e6";
@@ -53,6 +60,7 @@ public class WeatherController extends AppCompatActivity {
     TextView mCityLabel;
     ImageView mWeatherImage;
     TextView mTemperatureLabel;
+    ListView mListFiveDays;
 
     // Declaring a LocationManager and a LocationListener here:
     LocationManager mLocationManager;
@@ -67,6 +75,7 @@ public class WeatherController extends AppCompatActivity {
         mCityLabel = findViewById(R.id.locationTV);
         mWeatherImage = findViewById(R.id.weatherSymbolIV);
         mTemperatureLabel = findViewById(R.id.tempTV);
+        mListFiveDays = findViewById(R.id.list_five_days);
         ImageButton changeCityButton = findViewById(R.id.changeCityButton);
 
         // Add an OnClickListener to the changeCityButton here:
@@ -187,13 +196,13 @@ public class WeatherController extends AppCompatActivity {
 
 //         Speed up update on screen by using last known location.
         Location lastLocation = mLocationManager.getLastKnownLocation(LOCATION_PROVIDER);
-//        String longitude = String.valueOf(lastLocation.getLongitude());
-//        String latitude = String.valueOf(lastLocation.getLatitude());
-//        RequestParams params = new RequestParams();
-//        params.put("lat", latitude);
-//        params.put("lon", longitude);
-//        params.put("appid", APP_ID);
-//        letsDoSomeNetworking(params);
+        String longitude = String.valueOf(lastLocation.getLongitude());
+        String latitude = String.valueOf(lastLocation.getLatitude());
+        RequestParams params = new RequestParams();
+        params.put("lat", latitude);
+        params.put("lon", longitude);
+        params.put("appid", APP_ID);
+        letsDoSomeNetworking(params);
 
         // Some additional log statements to help you debug
         Log.d(LOGCAT_TAG, "Location Provider used: "
@@ -235,7 +244,7 @@ public class WeatherController extends AppCompatActivity {
         // AsyncHttpClient belongs to the loopj dependency.
         AsyncHttpClient client = new AsyncHttpClient();
 
-        // Making an HTTP GET request by providing a URL and the parameters.
+        // Making an HTTP GET request by providing a URL and the parameters for Current Weather Forecast
         client.get(WEATHER_URL, params, new JsonHttpResponseHandler() {
 
             @Override
@@ -257,11 +266,35 @@ public class WeatherController extends AppCompatActivity {
             }
 
         });
+
+        // Making an HTTP GET request by providing a URL and the parameters for Five Day Weather Forecast
+        client.get(WEATHER_URL_FIVE, params, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+
+                Log.d(LOGCAT_TAG, "Success! JSON: " + response.toString());
+                WeatherDataFiveDayModel weatherDataFive = WeatherDataFiveDayModel.fromJson(response);
+                updateFiveDayUI(weatherDataFive);
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable e, JSONObject response) {
+
+                Log.e(LOGCAT_TAG, "Fail " + e.toString());
+                Toast.makeText(WeatherController.this, "Request Failed", Toast.LENGTH_SHORT).show();
+
+                Log.d(LOGCAT_TAG, "Status code " + statusCode);
+                Log.d(LOGCAT_TAG, "Here's what we got instead " + response.toString());
+            }
+
+        });
+
     }
 
 
 
-    // Updates the information shown on screen.
+    // Updates the information shown on screen for current weather.
     private void updateUI(WeatherDataModel weather) {
         mTemperatureLabel.setText(weather.getTemperature());
         mCityLabel.setText(weather.getCity());
@@ -270,6 +303,16 @@ public class WeatherController extends AppCompatActivity {
         int resourceID = getResources().getIdentifier(weather.getIconName(), "drawable", getPackageName());
         mWeatherImage.setImageResource(resourceID);
 
+    }
+
+    // Updates the information shown on screen for five day forecast.
+    private void updateFiveDayUI(WeatherDataFiveDayModel weather) {
+        months = new DateFormatSymbols().getMonths();
+        String [] temps = new String [ ]{weather.getTemperature().toString()};
+        System.out.println("temps are : "+temps);
+        ArrayAdapter<String> tempsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, temps);
+        System.out.println("weather request list: "+weather.getTemperature().toString());
+        mListFiveDays.setAdapter(tempsAdapter);
     }
 
     // Freeing up resources when the app enters the paused state.

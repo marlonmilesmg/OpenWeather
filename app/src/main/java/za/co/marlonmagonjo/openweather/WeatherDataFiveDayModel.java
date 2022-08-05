@@ -3,7 +3,9 @@ package za.co.marlonmagonjo.openweather;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WeatherDataModel {
+import java.util.ArrayList;
+
+public class WeatherDataFiveDayModel {
 
     // Member variables that hold our relevant weather information.
     private String mTemperature;
@@ -11,25 +13,30 @@ public class WeatherDataModel {
     private String mIconName;
     private int mCondition;
 
-
     // Create a WeatherDataModel from a JSON.
     // We will call this instead of the standard constructor.
-    public static WeatherDataModel fromJson(JSONObject jsonObject) {
+    public static WeatherDataFiveDayModel fromJson(JSONObject jsonObject) {
 
         // JSON parsing is risky business. Need to surround the parsing code with a try-catch block.
         try {
-            WeatherDataModel weatherData = new WeatherDataModel();
+            WeatherDataFiveDayModel weatherDataFive = new WeatherDataFiveDayModel();
 
-            weatherData.mCity = jsonObject.getString("name");
-            weatherData.mCondition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
-            weatherData.mIconName = updateWeatherIcon(weatherData.mCondition);
+            for(int i = 1; i<40; i++){
 
-            double tempResult = jsonObject.getJSONObject("main").getDouble("temp") - 273.15;
-            int roundedValue = (int) Math.rint(tempResult);
+                ArrayList<String> fiveDays = new ArrayList<>();
+                double tempResult = jsonObject.getJSONArray("list").getJSONObject(i).getJSONObject("main").getDouble("temp") - 273.15;
+                int roundedValue = (int) Math.rint(tempResult);
+                weatherDataFive.mTemperature = Integer.toString(roundedValue);
 
-            weatherData.mTemperature = Integer.toString(roundedValue);
+                fiveDays.add(Integer.toString(roundedValue));
+                i+=8;
 
-            return weatherData;
+                System.out.println("iii counter : "+ i);
+                System.out.println("days in counter are : "+fiveDays);
+                System.out.println("weather forecast : "+weatherDataFive.mTemperature);
+            }
+
+            return weatherDataFive;
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -70,9 +77,8 @@ public class WeatherDataModel {
     }
 
     // Getter methods for temperature, city, and icon name:
-
-    public String getTemperature() {
-        return mTemperature + "°";
+    public String[] getTemperature() {
+        return new String[]{mTemperature + "°"};
     }
 
     public String getCity() {
@@ -82,6 +88,4 @@ public class WeatherDataModel {
     public String getIconName() {
         return mIconName;
     }
-
-
 }

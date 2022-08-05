@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/layout/adapter_view_layout.xml" value="0.3692708333333333" />
         <entry key="app/src/main/res/layout/change_city_layout.xml" value="0.3703125" />
         <entry key="app/src/main/res/layout/weather_controller_layout.xml" value="0.3703125" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2905" />
