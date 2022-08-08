@@ -86,7 +86,7 @@
         <ListView
             android:id="@+id/list_five_days"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@android:color/white"
             android:textColor="@color/white">
 

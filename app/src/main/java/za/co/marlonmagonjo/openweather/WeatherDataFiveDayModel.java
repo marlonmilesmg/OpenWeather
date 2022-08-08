@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class WeatherDataFiveDayModel {
 
     // Member variables that hold our relevant weather information.
-    private String mTemperature;
+    public ArrayList<String> mTemperature;
     private String mCity;
     private String mIconName;
     private int mCondition;
@@ -20,21 +20,20 @@ public class WeatherDataFiveDayModel {
         // JSON parsing is risky business. Need to surround the parsing code with a try-catch block.
         try {
             WeatherDataFiveDayModel weatherDataFive = new WeatherDataFiveDayModel();
-
+            ArrayList<String> fiveDays = new ArrayList<>();
             for(int i = 1; i<40; i++){
-
-                ArrayList<String> fiveDays = new ArrayList<>();
                 double tempResult = jsonObject.getJSONArray("list").getJSONObject(i).getJSONObject("main").getDouble("temp") - 273.15;
                 int roundedValue = (int) Math.rint(tempResult);
-                weatherDataFive.mTemperature = Integer.toString(roundedValue);
-
+                //weatherDataFive.mTemperature = (Integer.toString(roundedValue));
                 fiveDays.add(Integer.toString(roundedValue));
+
                 i+=8;
 
                 System.out.println("iii counter : "+ i);
                 System.out.println("days in counter are : "+fiveDays);
                 System.out.println("weather forecast : "+weatherDataFive.mTemperature);
             }
+            weatherDataFive.mTemperature = fiveDays;
 
             return weatherDataFive;
 
@@ -77,8 +76,8 @@ public class WeatherDataFiveDayModel {
     }
 
     // Getter methods for temperature, city, and icon name:
-    public String[] getTemperature() {
-        return new String[]{mTemperature + "°"};
+    public ArrayList<String> getTemperature() {
+        return mTemperature;
     }
 
     public String getCity() {

@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,9 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONObject;
 
 import java.text.DateFormatSymbols;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -38,7 +42,7 @@ public class WeatherController extends AppCompatActivity {
     final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather";
     final String WEATHER_URL_FIVE = "http://api.openweathermap.org/data/2.5/forecast";
     String [] months;
-
+    DBHelper DB;
     // App ID to use OpenWeather data
     final String APP_ID = "5c144e14a34c76191da0f5443f9531e6";
 
@@ -71,12 +75,19 @@ public class WeatherController extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.weather_controller_layout);
-
+        DB = new DBHelper(this);
         mCityLabel = findViewById(R.id.locationTV);
         mWeatherImage = findViewById(R.id.weatherSymbolIV);
         mTemperatureLabel = findViewById(R.id.tempTV);
         mListFiveDays = findViewById(R.id.list_five_days);
         ImageButton changeCityButton = findViewById(R.id.changeCityButton);
+
+        mCityLabel.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+
+            }
+        });
 
         // Add an OnClickListener to the changeCityButton here:
         changeCityButton.setOnClickListener(new View.OnClickListener() {
@@ -180,13 +191,6 @@ public class WeatherController extends AppCompatActivity {
         // This is the permission check to access (fine) location.
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             ActivityCompat.requestPermissions(this,
                     new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
             return;
@@ -195,14 +199,14 @@ public class WeatherController extends AppCompatActivity {
 
 
 //         Speed up update on screen by using last known location.
-        Location lastLocation = mLocationManager.getLastKnownLocation(LOCATION_PROVIDER);
-        String longitude = String.valueOf(lastLocation.getLongitude());
-        String latitude = String.valueOf(lastLocation.getLatitude());
-        RequestParams params = new RequestParams();
-        params.put("lat", latitude);
-        params.put("lon", longitude);
-        params.put("appid", APP_ID);
-        letsDoSomeNetworking(params);
+//        Location lastLocation = mLocationManager.getLastKnownLocation(LOCATION_PROVIDER);
+//        String longitude = String.valueOf(lastLocation.getLongitude());
+//        String latitude = String.valueOf(lastLocation.getLatitude());
+//        RequestParams params = new RequestParams();
+//        params.put("lat", latitude);
+//        params.put("lon", longitude);
+//        params.put("appid", APP_ID);
+//        letsDoSomeNetworking(params);
 
         // Some additional log statements to help you debug
         Log.d(LOGCAT_TAG, "Location Provider used: "
@@ -307,11 +311,18 @@ public class WeatherController extends AppCompatActivity {
 
     // Updates the information shown on screen for five day forecast.
     private void updateFiveDayUI(WeatherDataFiveDayModel weather) {
+
         months = new DateFormatSymbols().getMonths();
-        String [] temps = new String [ ]{weather.getTemperature().toString()};
+
+        ArrayList<String> temps = new ArrayList<String>();
+        temps.add("Day 1 Forecast Temp: " + weather.getTemperature().get(0) + "°");
+        temps.add("Day 2 Forecast Temp: " + weather.getTemperature().get(1) + "°");
+        temps.add("Day 3 Forecast Temp: " + weather.getTemperature().get(2) + "°");
+        temps.add("Day 4 Forecast Temp: " + weather.getTemperature().get(3) + "°");
+        temps.add("Day 5 Forecast Temp: " + weather.getTemperature().get(4) + "°");
         System.out.println("temps are : "+temps);
-        ArrayAdapter<String> tempsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, temps);
-        System.out.println("weather request list: "+weather.getTemperature().toString());
+        ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+        System.out.println("weather request list: "+weather.getTemperature());
         mListFiveDays.setAdapter(tempsAdapter);
     }
 
