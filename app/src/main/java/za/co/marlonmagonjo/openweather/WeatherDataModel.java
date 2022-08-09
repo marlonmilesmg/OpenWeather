@@ -9,6 +9,8 @@ public class WeatherDataModel {
     private String mTemperature;
     private String mCity;
     private String mIconName;
+    private String mMinTemperature;
+    private String mMaxTemperature;
     private int mCondition;
 
 
@@ -23,10 +25,14 @@ public class WeatherDataModel {
             weatherData.mCity = jsonObject.getString("name");
             weatherData.mCondition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
             weatherData.mIconName = updateWeatherIcon(weatherData.mCondition);
-
+            double tempMinTemp = jsonObject.getJSONObject("main").getDouble("temp_min") - 273.15;
+            double tempMaxTemp = jsonObject.getJSONObject("main").getDouble("temp_max") - 273.15;
             double tempResult = jsonObject.getJSONObject("main").getDouble("temp") - 273.15;
+            int roundedMinTemp = (int) Math.rint(tempMinTemp);
+            int roundedMaxTemp = (int) Math.rint(tempMaxTemp);
             int roundedValue = (int) Math.rint(tempResult);
-
+            weatherData.mMinTemperature = Integer.toString(roundedMinTemp);
+            weatherData.mMaxTemperature = Integer.toString(roundedMaxTemp);
             weatherData.mTemperature = Integer.toString(roundedValue);
 
             return weatherData;
@@ -69,10 +75,18 @@ public class WeatherDataModel {
         return "dunno";
     }
 
-    // Getter methods for temperature, city, and icon name:
+    // Getter methods for current temperature, min and max temperature, city, and icon name:
 
     public String getTemperature() {
         return mTemperature + "°";
+    }
+
+    public String getmMinTemperature(){
+        return mMinTemperature + "°";
+    }
+
+    public String getmMaxTemperature(){
+        return mMaxTemperature + "°";
     }
 
     public String getCity() {

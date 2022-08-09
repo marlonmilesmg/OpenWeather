@@ -64,6 +64,8 @@ public class WeatherController extends AppCompatActivity {
     TextView mCityLabel;
     ImageView mWeatherImage;
     TextView mTemperatureLabel;
+    TextView mMinTemperatureLabel;
+    TextView mMaxTemperatureLabel;
     ListView mListFiveDays;
 
     // Declaring a LocationManager and a LocationListener here:
@@ -79,6 +81,8 @@ public class WeatherController extends AppCompatActivity {
         mCityLabel = findViewById(R.id.locationTV);
         mWeatherImage = findViewById(R.id.weatherSymbolIV);
         mTemperatureLabel = findViewById(R.id.tempTV);
+        mMinTemperatureLabel = findViewById(R.id.minTemp);
+        mMaxTemperatureLabel = findViewById(R.id.maxTemp);
         mListFiveDays = findViewById(R.id.list_five_days);
         ImageButton changeCityButton = findViewById(R.id.changeCityButton);
 
@@ -302,7 +306,8 @@ public class WeatherController extends AppCompatActivity {
     private void updateUI(WeatherDataModel weather) {
         mTemperatureLabel.setText(weather.getTemperature());
         mCityLabel.setText(weather.getCity());
-
+        mMinTemperatureLabel.setText("Min " + weather.getmMinTemperature());
+        mMaxTemperatureLabel.setText("Max " + weather.getmMaxTemperature());
         // Update the icon based on the resource id of the image in the drawable folder.
         int resourceID = getResources().getIdentifier(weather.getIconName(), "drawable", getPackageName());
         mWeatherImage.setImageResource(resourceID);
