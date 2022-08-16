@@ -28,9 +28,11 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import cz.msebera.android.httpclient.Header;
@@ -317,18 +319,132 @@ public class WeatherController extends AppCompatActivity {
     // Updates the information shown on screen for five day forecast.
     private void updateFiveDayUI(WeatherDataFiveDayModel weather) {
 
-        months = new DateFormatSymbols().getMonths();
+        // Get Current Day
+        Date currentTime = Calendar.getInstance().getTime();
+        String formattedDate = DateFormat.getDateInstance(DateFormat.FULL).format(currentTime);
 
-        ArrayList<String> temps = new ArrayList<String>();
-        temps.add("Day 1 Forecast Temp: " + weather.getTemperature().get(0) + "°");
-        temps.add("Day 2 Forecast Temp: " + weather.getTemperature().get(1) + "°");
-        temps.add("Day 3 Forecast Temp: " + weather.getTemperature().get(2) + "°");
-        temps.add("Day 4 Forecast Temp: " + weather.getTemperature().get(3) + "°");
-        temps.add("Day 5 Forecast Temp: " + weather.getTemperature().get(4) + "°");
-        System.out.println("temps are : "+temps);
-        ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
-        System.out.println("weather request list: "+weather.getTemperature());
-        mListFiveDays.setAdapter(tempsAdapter);
+        String[] splitDate = formattedDate.split(",");
+
+        if(splitDate[0].equals("Tuesday")){
+            String[] fiveDays = {"Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
+            ArrayList<String> temps = new ArrayList<String>();
+            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+
+            System.out.println("temps are : "+temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            System.out.println("weather request list: "+weather.getTemperature());
+            mListFiveDays.setAdapter(tempsAdapter);
+
+        }
+
+        if(splitDate[0].equals("Wednesday")){
+            String[] fiveDays = {"Thursday", "Friday", "Saturday", "Sunday", "Monday"};
+
+            ArrayList<String> temps = new ArrayList<String>();
+            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+
+            System.out.println("temps are : "+temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            System.out.println("weather request list: "+weather.getTemperature());
+            mListFiveDays.setAdapter(tempsAdapter);
+
+        }
+
+        if(splitDate[0].equals("Thursday")){
+            String[] fiveDays = {"Friday", "Saturday", "Sunday", "Monday", "Tuesday"};
+
+            ArrayList<String> temps = new ArrayList<String>();
+            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+
+            System.out.println("temps are : "+temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            System.out.println("weather request list: "+weather.getTemperature());
+            mListFiveDays.setAdapter(tempsAdapter);
+
+        }
+
+        if(splitDate[0].equals("Friday")){
+            String[] fiveDays = {"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"};
+
+            ArrayList<String> temps = new ArrayList<String>();
+            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+
+            System.out.println("temps are : "+temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            System.out.println("weather request list: "+weather.getTemperature());
+            mListFiveDays.setAdapter(tempsAdapter);
+
+        }
+
+        if(splitDate[0].equals("Saturday")){
+            String[] fiveDays = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"};
+
+            ArrayList<String> temps = new ArrayList<String>();
+            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+
+            System.out.println("temps are : "+temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            System.out.println("weather request list: "+weather.getTemperature());
+            mListFiveDays.setAdapter(tempsAdapter);
+
+        }
+
+        if(splitDate[0].equals("Sunday")){
+            String[] fiveDays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+
+            ArrayList<String> temps = new ArrayList<String>();
+            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+
+            System.out.println("temps are : "+temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            System.out.println("weather request list: "+weather.getTemperature());
+            mListFiveDays.setAdapter(tempsAdapter);
+
+        }
+
+        if(splitDate[0].equals("Monday")){
+            String[] fiveDays = {"Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+            ArrayList<String> temps = new ArrayList<String>();
+            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+
+            System.out.println("temps are : "+temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            System.out.println("weather request list: "+weather.getTemperature());
+            mListFiveDays.setAdapter(tempsAdapter);
+
+        }
+
+
     }
 
     // Freeing up resources when the app enters the paused state.
