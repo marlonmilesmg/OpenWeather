@@ -326,14 +326,14 @@ public class WeatherController extends AppCompatActivity {
         String[] splitDate = formattedDate.split(",");
 
         if(splitDate[0].equals("Tuesday")){
-            String[] fiveDays = {"Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+            String[] fiveDays = {"Wed", "Thur", "Fri", "Sat", "Sun"};
 
             ArrayList<String> temps = new ArrayList<String>();
-            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
-            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
-            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
-            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
-            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+            temps.add(fiveDays[0]+ " - Forecast - Max " + weather.getMaxTemperature().get(0) + "°" +", Min " + weather.getMinTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " - Forecast - Max " + weather.getMaxTemperature().get(1) + "°"+", Min " + weather.getMinTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " - Forecast - Max " + weather.getMaxTemperature().get(2) + "°"+", Min " + weather.getMinTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " - Forecast - Max " + weather.getMaxTemperature().get(3) + "°"+", Min " + weather.getMinTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
             ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
@@ -343,15 +343,14 @@ public class WeatherController extends AppCompatActivity {
         }
 
         if(splitDate[0].equals("Wednesday")){
-            String[] fiveDays = {"Thursday", "Friday", "Saturday", "Sunday", "Monday"};
+            String[] fiveDays = {"Thur", "Fri", "Sat", "Sun", "Mon"};
 
             ArrayList<String> temps = new ArrayList<String>();
-            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
-            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
-            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
-            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
-            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
-
+            temps.add(fiveDays[0]+ " - Forecast - Max " + weather.getMaxTemperature().get(0) + "°" +", Min " + weather.getMinTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " - Forecast - Max " + weather.getMaxTemperature().get(1) + "°"+", Min " + weather.getMinTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " - Forecast - Max " + weather.getMaxTemperature().get(2) + "°"+", Min " + weather.getMinTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " - Forecast - Max " + weather.getMaxTemperature().get(3) + "°"+", Min " + weather.getMinTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
             System.out.println("temps are : "+temps);
             ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
             System.out.println("weather request list: "+weather.getTemperature());
@@ -360,14 +359,14 @@ public class WeatherController extends AppCompatActivity {
         }
 
         if(splitDate[0].equals("Thursday")){
-            String[] fiveDays = {"Friday", "Saturday", "Sunday", "Monday", "Tuesday"};
+            String[] fiveDays = {"Fri", "Sat", "Sun", "Mon", "Tues"};
 
             ArrayList<String> temps = new ArrayList<String>();
-            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
-            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
-            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
-            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
-            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+            temps.add(fiveDays[0]+ " - Forecast - Max " + weather.getMaxTemperature().get(0) + "°" +", Min " + weather.getMinTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " - Forecast - Max " + weather.getMaxTemperature().get(1) + "°"+", Min " + weather.getMinTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " - Forecast - Max " + weather.getMaxTemperature().get(2) + "°"+", Min " + weather.getMinTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " - Forecast - Max " + weather.getMaxTemperature().get(3) + "°"+", Min " + weather.getMinTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
             ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
@@ -377,14 +376,14 @@ public class WeatherController extends AppCompatActivity {
         }
 
         if(splitDate[0].equals("Friday")){
-            String[] fiveDays = {"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday"};
+            String[] fiveDays = {"Sat", "Sun", "Mon", "Tues", "Wed"};
 
             ArrayList<String> temps = new ArrayList<String>();
-            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
-            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
-            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
-            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
-            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+            temps.add(fiveDays[0]+ " - Forecast - Max " + weather.getMaxTemperature().get(0) + "°" +", Min " + weather.getMinTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " - Forecast - Max " + weather.getMaxTemperature().get(1) + "°"+", Min " + weather.getMinTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " - Forecast - Max " + weather.getMaxTemperature().get(2) + "°"+", Min " + weather.getMinTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " - Forecast - Max " + weather.getMaxTemperature().get(3) + "°"+", Min " + weather.getMinTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
             ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
@@ -394,14 +393,14 @@ public class WeatherController extends AppCompatActivity {
         }
 
         if(splitDate[0].equals("Saturday")){
-            String[] fiveDays = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"};
+            String[] fiveDays = {"Sun", "Mon", "Tue", "Wed", "Thur"};
 
             ArrayList<String> temps = new ArrayList<String>();
-            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
-            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
-            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
-            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
-            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+            temps.add(fiveDays[0]+ " - Forecast - Max " + weather.getMaxTemperature().get(0) + "°" +", Min " + weather.getMinTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " - Forecast - Max " + weather.getMaxTemperature().get(1) + "°"+", Min " + weather.getMinTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " - Forecast - Max " + weather.getMaxTemperature().get(2) + "°"+", Min " + weather.getMinTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " - Forecast - Max " + weather.getMaxTemperature().get(3) + "°"+", Min " + weather.getMinTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
             ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
@@ -411,14 +410,14 @@ public class WeatherController extends AppCompatActivity {
         }
 
         if(splitDate[0].equals("Sunday")){
-            String[] fiveDays = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+            String[] fiveDays = {"Mon", "Tue", "Wed", "Thur", "Fri"};
 
             ArrayList<String> temps = new ArrayList<String>();
-            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
-            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
-            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
-            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
-            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+            temps.add(fiveDays[0]+ " - Forecast - Max " + weather.getMaxTemperature().get(0) + "°" +", Min " + weather.getMinTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " - Forecast - Max " + weather.getMaxTemperature().get(1) + "°"+", Min " + weather.getMinTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " - Forecast - Max " + weather.getMaxTemperature().get(2) + "°"+", Min " + weather.getMinTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " - Forecast - Max " + weather.getMaxTemperature().get(3) + "°"+", Min " + weather.getMinTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
             ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
@@ -428,14 +427,14 @@ public class WeatherController extends AppCompatActivity {
         }
 
         if(splitDate[0].equals("Monday")){
-            String[] fiveDays = {"Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+            String[] fiveDays = {"Tue", "Wed", "Thur", "Fri", "Sat"};
 
             ArrayList<String> temps = new ArrayList<String>();
-            temps.add(fiveDays[0]+ " forecast - " + weather.getTemperature().get(0) + "°");
-            temps.add(fiveDays[1]+ " forecast - " + weather.getTemperature().get(1) + "°");
-            temps.add(fiveDays[2]+ " forecast - " + weather.getTemperature().get(2) + "°");
-            temps.add(fiveDays[3]+ " forecast - " + weather.getTemperature().get(3) + "°");
-            temps.add(fiveDays[4]+ " forecast - " + weather.getTemperature().get(4) + "°");
+            temps.add(fiveDays[0]+ " - Forecast - Max " + weather.getMaxTemperature().get(0) + "°" +", Min " + weather.getMinTemperature().get(0) + "°");
+            temps.add(fiveDays[1]+ " - Forecast - Max " + weather.getMaxTemperature().get(1) + "°"+", Min " + weather.getMinTemperature().get(1) + "°");
+            temps.add(fiveDays[2]+ " - Forecast - Max " + weather.getMaxTemperature().get(2) + "°"+", Min " + weather.getMinTemperature().get(2) + "°");
+            temps.add(fiveDays[3]+ " - Forecast - Max " + weather.getMaxTemperature().get(3) + "°"+", Min " + weather.getMinTemperature().get(3) + "°");
+            temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
             ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);

@@ -9,6 +9,8 @@ public class WeatherDataFiveDayModel {
 
     // Member variables that hold our relevant weather information.
     public ArrayList<String> mTemperature;
+    public ArrayList<String> minTemperature;
+    public ArrayList<String> maxTemperature;
     private String mCity;
     private String mIconName;
     private int mCondition;
@@ -21,19 +23,30 @@ public class WeatherDataFiveDayModel {
         try {
             WeatherDataFiveDayModel weatherDataFive = new WeatherDataFiveDayModel();
             ArrayList<String> fiveDays = new ArrayList<>();
+            ArrayList<String> fiveDaysMinTemp = new ArrayList<>();
+            ArrayList<String> fiveDayMaxTemp = new ArrayList<>();
             for(int i = 1; i<40; i++){
                 double tempResult = jsonObject.getJSONArray("list").getJSONObject(i).getJSONObject("main").getDouble("temp") - 273.15;
+                double tempResultMin = jsonObject.getJSONArray("list").getJSONObject(i).getJSONObject("main").getDouble("temp_min") - 273.15;
+                double tempResultMax = jsonObject.getJSONArray("list").getJSONObject(i).getJSONObject("main").getDouble("temp_max") - 273.15;
                 int roundedValue = (int) Math.rint(tempResult);
+                int roundedValueMin = (int) Math.rint(tempResultMin);
+                int roundedValueMax = (int) Math.rint(tempResultMax);
                 //weatherDataFive.mTemperature = (Integer.toString(roundedValue));
                 fiveDays.add(Integer.toString(roundedValue));
-
+                fiveDaysMinTemp.add(Integer.toString(roundedValueMin));
+                fiveDayMaxTemp.add(Integer.toString(roundedValueMax));
                 i+=8;
 
                 System.out.println("iii counter : "+ i);
                 System.out.println("days in counter are : "+fiveDays);
+                System.out.println("minimum temperatures are :" +fiveDaysMinTemp);
+                System.out.println("maximum temperatures are: " +fiveDayMaxTemp);
                 System.out.println("weather forecast : "+weatherDataFive.mTemperature);
             }
             weatherDataFive.mTemperature = fiveDays;
+            weatherDataFive.minTemperature = fiveDaysMinTemp;
+            weatherDataFive.maxTemperature = fiveDayMaxTemp;
 
             return weatherDataFive;
 
@@ -78,6 +91,14 @@ public class WeatherDataFiveDayModel {
     // Getter methods for temperature, city, and icon name:
     public ArrayList<String> getTemperature() {
         return mTemperature;
+    }
+
+    public ArrayList<String> getMinTemperature(){
+        return minTemperature;
+    }
+
+    public ArrayList<String>getMaxTemperature(){
+        return maxTemperature;
     }
 
     public String getCity() {
