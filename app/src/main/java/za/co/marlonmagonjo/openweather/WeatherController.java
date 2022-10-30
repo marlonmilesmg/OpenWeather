@@ -336,7 +336,7 @@ public class WeatherController extends AppCompatActivity {
             temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
-            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, R.layout.row, temps);
             System.out.println("weather request list: "+weather.getTemperature());
             mListFiveDays.setAdapter(tempsAdapter);
 
@@ -352,7 +352,7 @@ public class WeatherController extends AppCompatActivity {
             temps.add(fiveDays[3]+ " - Forecast - Max " + weather.getMaxTemperature().get(3) + "°"+", Min " + weather.getMinTemperature().get(3) + "°");
             temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
             System.out.println("temps are : "+temps);
-            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, R.layout.row, temps);
             System.out.println("weather request list: "+weather.getTemperature());
             mListFiveDays.setAdapter(tempsAdapter);
 
@@ -369,7 +369,7 @@ public class WeatherController extends AppCompatActivity {
             temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
-            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, R.layout.row, temps);
             System.out.println("weather request list: "+weather.getTemperature());
             mListFiveDays.setAdapter(tempsAdapter);
 
@@ -386,7 +386,7 @@ public class WeatherController extends AppCompatActivity {
             temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
-            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, R.layout.row, temps);
             System.out.println("weather request list: "+weather.getTemperature());
             mListFiveDays.setAdapter(tempsAdapter);
 
@@ -403,7 +403,7 @@ public class WeatherController extends AppCompatActivity {
             temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
-            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, R.layout.row, temps);
             System.out.println("weather request list: "+weather.getTemperature());
             mListFiveDays.setAdapter(tempsAdapter);
 
@@ -420,7 +420,7 @@ public class WeatherController extends AppCompatActivity {
             temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
-            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, R.layout.row, temps);
             System.out.println("weather request list: "+weather.getTemperature());
             mListFiveDays.setAdapter(tempsAdapter);
 
@@ -437,7 +437,7 @@ public class WeatherController extends AppCompatActivity {
             temps.add(fiveDays[4]+ " - Forecast - Max " + weather.getMaxTemperature().get(4) + "°"+", Min " + weather.getMinTemperature().get(4) + "°");
 
             System.out.println("temps are : "+temps);
-            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, temps);
+            ArrayAdapter<String> tempsAdapter = new ArrayAdapter<>(this, R.layout.row, temps);
             System.out.println("weather request list: "+weather.getTemperature());
             mListFiveDays.setAdapter(tempsAdapter);
 
